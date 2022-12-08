@@ -15,5 +15,6 @@ while True:
         result = s_sock.recv(buffer)
     except KeyboardInterrupt:
         s_sock.close()
+        break
     else:
         print('Message from server!', result.decode('utf-8'))
