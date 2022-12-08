@@ -7,14 +7,22 @@ buff = 2 ** 10
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.bind((HOST, PORT))
 sock.listen(4)
+# sock.setblocking(False) -> sock.settimeout(0)
+# sock.setblocking(True) -> sock.settimeout(None)
+sock.settimeout(5)
 
 while True:
     try:
         c_sock, addr = sock.accept()
+    except socket.error:
+        print('no clients')
+    # except socket.timeout:
+    #     print('timed out')
     except KeyboardInterrupt:
-        sock.close()
+        print('stopped server')
         break
     else:
+        c_sock.setblocking(True)
         result = c_sock.recv(buff)
         c_sock.close()
         print('Message from server', result.decode('utf-8'))
