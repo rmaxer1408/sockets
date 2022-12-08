@@ -16,4 +16,4 @@ while True:
     except KeyboardInterrupt:
         s_sock.close()
     else:
-        print('Message from server', result.decode('utf-8'))
+        print('Message from server!', result.decode('utf-8'))
