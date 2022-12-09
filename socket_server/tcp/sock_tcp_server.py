@@ -1,7 +1,7 @@
 import socketserver
 
 
-class ThredTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
+class ThreadTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
     pass
 
 
@@ -15,5 +15,5 @@ class EchoTCPHandler(socketserver.BaseRequestHandler):
 
 
 if __name__ == '__main__':
-    with ThredTCPServer(('', 8888), EchoTCPHandler) as server:
+    with ThreadTCPServer(('', 8888), EchoTCPHandler) as server:
         server.serve_forever()
